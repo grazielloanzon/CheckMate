@@ -13,6 +13,9 @@ let citizenCategoryFilter = 'all';
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize preloaded community events.
+    initializeSharedEvents();
+
     setupCitizenNavigation();
     setupCitizenSearch();
     setupCitizenNotifications();
