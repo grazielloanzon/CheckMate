@@ -1511,3 +1511,240 @@ body {
         right: 15px;
     }
 }
+
+
+/* =========================================================
+   MOBILE LAYOUT IMPROVEMENTS
+   ========================================================= */
+@media (max-width: 600px) {
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        padding-top: 65px;
+    }
+
+    .custom-navbar {
+        min-height: 65px;
+        height: 65px;
+        padding: 0;
+    }
+
+    .custom-navbar .container-fluid {
+        min-height: 65px;
+        flex-wrap: nowrap;
+        padding: 0 10px;
+    }
+
+    .navbar-logo {
+        flex: 0 0 auto;
+        margin: 0;
+    }
+
+    .navbar-logo img {
+        width: 108px !important;
+        max-width: 32vw;
+        height: auto;
+    }
+
+    .custom-navbar .navbar-nav {
+        display: flex;
+        flex: 0 1 auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 2px;
+        min-width: 0;
+        margin: 0 0 0 auto;
+    }
+
+    .custom-navbar .nav-item {
+        flex: 0 0 auto;
+    }
+
+    .custom-navbar .nav-link {
+        padding: 8px 7px !important;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .checkmate-placard {
+        width: calc(100% - 20px);
+        max-width: 100%;
+        margin: 12px auto;
+        padding: 17px 13px;
+        border-radius: 13px;
+    }
+
+    .checkmate-placard.mainContainer {
+        margin: 12px auto;
+    }
+
+    .main-TOPcontent,
+    .main-content,
+    .featured-events,
+    .topContainer,
+    .event-tools {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .content-middle-text {
+        font-size: clamp(25px, 8vw, 32px);
+        overflow-wrap: anywhere;
+    }
+
+    .featured-events {
+        margin: 24px 4px 28px;
+    }
+
+    .featured-header h2 {
+        font-size: 20px;
+    }
+
+    .featured-header p,
+    .top-content p {
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    .events-list,
+    .featured-events-container:has(.featured-event-card) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .event-tools {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .event-navbar {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .event-navbar .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: max-content;
+        min-width: 100%;
+        gap: 4px;
+        margin: 0;
+    }
+
+    .event-navbar .nav-link {
+        padding: 9px 11px !important;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .searchBar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .searchBar input,
+    .searchBar .search-field,
+    .searchBar .category-filter {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .searchBar .category-filter {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .event-card {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .event-card-body {
+        padding: 16px 14px;
+    }
+
+    .event-card-title {
+        font-size: 18px;
+        overflow-wrap: anywhere;
+    }
+
+    .event-card-bottom {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .event-card-bottom .view-details-btn {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .notif-item {
+        position: static;
+        list-style: none;
+    }
+
+    .notif-bell {
+        width: 36px;
+        height: 36px;
+        font-size: 19px;
+    }
+
+    .notif-panel {
+        position: fixed;
+        top: 73px;
+        left: 10px;
+        right: 10px;
+        width: auto;
+        max-width: none;
+        max-height: calc(100dvh - 90px);
+        overflow-y: auto;
+        z-index: 10000;
+    }
+
+    #citizen-home-section > .notif-item,
+    #citizen-events-section > .notif-item {
+        top: 12px;
+        right: 12px;
+    }
+
+    .modal-dialog {
+        width: auto;
+        max-width: calc(100vw - 20px);
+        margin: 10px auto;
+    }
+
+    .modal-content {
+        max-height: calc(100dvh - 20px);
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar-logo img {
+        width: 94px !important;
+    }
+
+    .custom-navbar .nav-link {
+        padding: 7px 5px !important;
+        font-size: 10px;
+    }
+
+    .checkmate-placard {
+        width: calc(100% - 14px);
+        padding: 14px 10px;
+    }
+}

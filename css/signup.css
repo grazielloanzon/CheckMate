@@ -432,3 +432,126 @@ body {
         padding: 15px 20px;
     }
 }
+
+
+/* =========================================================
+   MOBILE LAYOUT IMPROVEMENTS
+   ========================================================= */
+@media (max-width: 600px) {
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .custom-navbar {
+        min-height: 64px;
+        height: 64px;
+    }
+
+    .custom-navbar .container-fluid {
+        min-height: 64px;
+        padding: 0 13px;
+    }
+
+    .navbar-logo {
+        margin: 0;
+    }
+
+    .navbar-logo img {
+        width: 112px !important;
+        max-width: 42vw;
+        height: auto;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        max-width: 100%;
+        min-height: 0;
+        margin: 15px 12px 28px;
+        padding: 0;
+        gap: 20px;
+    }
+
+    .left-container,
+    .right-container {
+        width: 100%;
+        min-width: 0;
+        padding: 0;
+    }
+
+    .left-container {
+        display: block;
+    }
+
+    .login-intro h1 {
+        font-size: clamp(28px, 8vw, 34px);
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+    }
+
+    .login-intro > p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .signup-card,
+    .login-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 22px 17px;
+        border-radius: 16px;
+    }
+
+    .signup-card form,
+    .signup-name-row,
+    .signup-field,
+    .input-wrap {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .signup-name-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .input-wrap input {
+        width: 100%;
+        min-width: 0;
+        font-size: 16px;
+    }
+
+    .terms-modal {
+        width: calc(100vw - 20px);
+        max-width: 560px;
+        max-height: calc(100dvh - 20px);
+        margin: 10px auto;
+        overflow-y: auto;
+    }
+
+    .signup-success-modal .modal-dialog {
+        width: calc(100vw - 20px);
+        max-width: 440px;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 360px) {
+    .main-container {
+        margin-right: 9px;
+        margin-left: 9px;
+    }
+
+    .signup-card,
+    .login-card {
+        padding: 19px 14px;
+    }
+
+    .intro-badge {
+        font-size: 9px;
+    }
+}

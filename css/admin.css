@@ -2085,3 +2085,378 @@ background-attachment: fixed;
         font-size: 9px;
     }
 }
+
+
+/* =========================================================
+   MOBILE LAYOUT IMPROVEMENTS
+   Keeps the admin navigation visible and usable on phones.
+   ========================================================= */
+@media (max-width: 600px) {
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        padding-top: 65px;
+        padding-bottom: 78px;
+    }
+
+    .custom-navbar {
+        min-height: 65px;
+        height: 65px;
+        padding: 0;
+    }
+
+    .custom-navbar .container-fluid {
+        min-height: 65px;
+        padding: 0 12px;
+    }
+
+    .navbar-logo {
+        margin-left: 0;
+    }
+
+    .navbar-logo img {
+        width: 112px !important;
+        max-width: 42vw;
+        height: auto;
+    }
+
+    .admin-nav-actions {
+        gap: 8px;
+        margin-left: auto;
+    }
+
+    .admin-account {
+        width: auto;
+        min-width: 0;
+        height: 36px;
+        margin: 0;
+        padding: 0 9px;
+        font-size: 9px;
+        letter-spacing: .6px;
+    }
+
+    .notif-bell {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
+        font-size: 19px;
+    }
+
+    /* Convert the desktop sidebar into a fixed bottom navigation. */
+    .navbar-column {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        border-right: 0;
+        border-top: 1px solid var(--line);
+        box-shadow: 0 -4px 18px rgba(15, 76, 92, .08);
+        z-index: 9998;
+        padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+
+    .navbar-text,
+    .navbar-description,
+    .menu-title {
+        display: none !important;
+    }
+
+    .navbar-column > .navbar-list {
+        width: 100%;
+        padding: 7px 5px;
+        margin: 0;
+    }
+
+    .navbar-column .navbar-list ul {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-around;
+        gap: 4px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar-column .navbar-list li {
+        display: flex;
+        flex: 1 1 0;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        min-width: 0;
+        height: 56px;
+        min-height: 56px;
+        margin: 0;
+        padding: 3px 2px;
+        border-radius: 9px;
+    }
+
+    .navbar-column .navbar-list li a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+        width: 100%;
+        min-height: 48px;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .navbar-column .navbar-list li i {
+        font-size: 19px;
+        line-height: 1;
+    }
+
+    .navbar-column .navbar-list li span {
+        display: block;
+        font-size: 9px;
+        line-height: 1.15;
+        font-weight: 600;
+    }
+
+    .navbar-column .navbar-list li p {
+        display: none;
+    }
+
+    .main-content {
+        width: 100%;
+        min-width: 0;
+        min-height: calc(100vh - 143px);
+        margin-left: 0;
+        padding: 20px 14px 24px;
+    }
+
+    .page-heading h1 {
+        font-size: clamp(20px, 6vw, 24px);
+        overflow-wrap: anywhere;
+    }
+
+    .page-heading p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .content-panel {
+        padding: 16px 13px;
+        margin-top: 16px;
+        min-width: 0;
+    }
+
+    .create-event-panel {
+        padding: 15px 12px;
+    }
+
+    .create-event-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .event-field,
+    .event-field input,
+    .event-field select,
+    .event-field textarea {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .create-event-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    .create-event-actions .btn {
+        width: 100%;
+    }
+
+    .manage-events-table-wrapper {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .manage-events-table {
+        min-width: 680px;
+    }
+
+    .cm-toast-container {
+        left: 12px;
+        right: 12px;
+        top: 75px;
+        width: auto;
+    }
+
+    .cm-confirm-box,
+    .cm-notify-box {
+        width: calc(100vw - 28px);
+        max-width: 440px;
+        max-height: calc(100dvh - 32px);
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar-logo img {
+        width: 98px !important;
+    }
+
+    .admin-account {
+        padding: 0 7px;
+        font-size: 8px;
+    }
+
+    .main-content {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .navbar-column .navbar-list li span {
+        font-size: 8px;
+    }
+}
+
+
+
+/* =========================================
+   CHECKMATE ADMIN - MOBILE BOTTOM NAVIGATION
+   ========================================= */
+
+@media screen and (max-width: 600px) {
+
+    /* Keep the top navbar visible */
+    body {
+        padding-top: 70px !important;
+        padding-bottom: 85px !important;
+    }
+
+    /* Hide the administrator information above the menu */
+    .navbar-column .navbar-text {
+        display: none !important;
+    }
+
+    /* Move the sidebar to the bottom of the screen */
+    .navbar-column {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        background: #ffffff !important;
+        border-right: none !important;
+        border-top: 1px solid #dce9eb !important;
+        box-shadow: 0 -3px 15px rgba(15, 76, 92, 0.10);
+        z-index: 9998 !important;
+        padding: 0 !important;
+    }
+
+    /* Menu wrapper */
+    .navbar-column > .navbar-list {
+        width: 100% !important;
+        padding: 7px 8px calc(7px + env(safe-area-inset-bottom)) !important;
+        margin: 0 !important;
+    }
+
+    /* Hide the MENU heading */
+    .navbar-column .menu-title {
+        display: none !important;
+    }
+
+    /* Arrange the three menu items horizontally */
+    .navbar-column .navbar-list > ul.navbar-list {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+        gap: 5px !important;
+    }
+
+    /* Individual menu items */
+    .navbar-column .navbar-list > ul.navbar-list > li {
+        flex: 1 1 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        height: 60px !important;
+        min-height: 60px !important;
+        margin: 0 !important;
+        padding: 5px 2px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        border-radius: 9px !important;
+        text-align: center !important;
+    }
+
+    /* Make the entire menu link clickable */
+    .navbar-column .navbar-list > ul.navbar-list > li > a {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 4px !important;
+        padding: 3px 0 !important;
+        text-decoration: none !important;
+    }
+
+    /* Menu icons */
+    .navbar-column .navbar-list > ul.navbar-list > li > a > i {
+        display: block !important;
+        font-size: 21px !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+    }
+
+    /* Menu labels */
+    .navbar-column .navbar-list > ul.navbar-list > li > a > span {
+        display: block !important;
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+        font-weight: 600 !important;
+        white-space: nowrap !important;
+        margin: 0 !important;
+    }
+
+    /* Active menu item */
+    .navbar-column .navbar-list > ul.navbar-list > li.active {
+        background: #dff2ef !important;
+        color: #147d71 !important;
+    }
+
+    .navbar-column .navbar-list > ul.navbar-list > li.active > a {
+        color: #147d71 !important;
+    }
+
+    /* Main content uses the full screen width */
+    .main-content {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 22px 14px 30px !important;
+        min-height: calc(100vh - 70px) !important;
+    }
+
+}
+
+/* Extra adjustments for very small phones */
+@media screen and (max-width: 360px) {
+
+    .navbar-column .navbar-list > ul.navbar-list > li > a > span {
+        font-size: 9px !important;
+    }
+
+    .navbar-column .navbar-list > ul.navbar-list > li > a > i {
+        font-size: 19px !important;
+    }
+
+}
