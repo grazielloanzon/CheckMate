@@ -225,7 +225,8 @@ function initializeDefaultAccounts() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    initializeSharedData();
+    initializeSharedEvents();
+    initializeDefaultAccounts();
 
     // Automatically complete expired events
     updateExpiredEvents();
