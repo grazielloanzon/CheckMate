@@ -10,7 +10,8 @@ const CM_SESSION_KEY = 'checkmate_user';
 const CM_DEFAULT_ACCOUNTS = [
     { id: 1, name: 'Juan Dela Cruz', firstName: 'Juan', surname: 'Dela Cruz', email: 'citizen@example.com', password: 'citizen123', role: 'Citizen', joined: '2026-01-10' },
     { id: 2, name: 'Maria Santos', firstName: 'Maria', surname: 'Santos', email: 'maria@example.com', password: 'maria123', role: 'Citizen', joined: '2026-03-22' },
-    { id: 3, name: 'System Administrator', firstName: 'System', surname: 'Administrator', email: 'admin@checkmate.com', password: 'admin123', role: 'Admin', joined: '2026-01-01' }
+    { id: 3, name: 'System Administrator', firstName: 'System', surname: 'Administrator', email: 'admin@checkmate.com', password: 'admin123', role: 'Admin', joined: '2026-01-01' },
+    { id: 4, name: 'Thristan Cacao', firstName: 'Thristan', surname: 'Cacao', email: 'thristancacao@example.com', password: 'tj123', role: 'Admin', joined: '2026-01-02' }
 ];
 
 function cmGetUsers() {
@@ -28,17 +29,20 @@ function cmSaveUsers(users) {
 function cmEnsureSeedUsers() {
     let users = cmGetUsers();
 
-    if (users.length === 0) {
-        users = CM_DEFAULT_ACCOUNTS.map(a => ({ ...a }));
-    } else {
-        // Older saved accounts had no password: give the default ones theirs
-        users.forEach(u => {
-            if (!u.password) {
-                const d = CM_DEFAULT_ACCOUNTS.find(a => a.email === u.email);
-                if (d) u.password = d.password;
+    CM_DEFAULT_ACCOUNTS.forEach(defaultAccount => {
+        const existingUser = users.find(
+            u => u.email.toLowerCase() === defaultAccount.email.toLowerCase()
+        );
+
+        if (!existingUser) {
+            users.push({ ...defaultAccount });
+        } else {
+            // Restore missing passwords for existing default accounts.
+            if (!existingUser.password) {
+                existingUser.password = defaultAccount.password;
             }
-        });
-    }
+        }
+    });
 
     cmSaveUsers(users);
 }
