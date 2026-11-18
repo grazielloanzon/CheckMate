@@ -52,6 +52,9 @@ function cmIsValidEmail(email) {
    LOGIN
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize the 29 premade citizen accounts.
+    initializeDefaultAccounts();
+
     cmEnsureSeedUsers();
 
     const loginForm = document.getElementById('loginForm');
