@@ -3,7 +3,7 @@
    ========================================================================== */
 
 function initializeSharedEvents() {
-    const SEED_VERSION = '1';
+    const SEED_VERSION = '2';
 
     const communityEvents = [
         {
@@ -75,7 +75,7 @@ Two passport-size ID pictures with formal attire, white background, and name tag
             startTime: "07:00",
             endTime: "08:00",
             location: "Barangay San Dionisio Old Gym",
-            category: "Sports",
+            category: "Health",
             status: "upcoming",
             description: "A free Zumba activity encouraging residents to exercise, stay active, and maintain a healthy lifestyle.",
             requirements: "No specific requirements mentioned."
@@ -138,7 +138,7 @@ eGovPH App on mobile phone.`
             startTime: "08:00",
             endTime: "10:00",
             location: "Barangay San Dionisio Old Gymnasium",
-            category: "Sports",
+            category: "Health",
             status: "upcoming",
             description: "A community Zumba activity that encourages residents to exercise, dance, enjoy themselves, and promote a healthy lifestyle.",
             requirements: "Register at the Office of San Dionisio Old Gymnasium. Look for Mr. Michael Sta. Ana."
