@@ -2518,3 +2518,34 @@ background-attachment: fixed;
         padding: 8px 10px !important;
     }
 }
+
+
+/* Create Event Button */
+#btnOpenCreateEvent {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    background: #147d92;
+    color: #ffffff;
+    border: 1px solid #147d92;
+    border-radius: 8px;
+
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+#btnOpenCreateEvent:hover {
+    background: #0f4c5c;
+    border-color: #0f4c5c;
+    box-shadow: 0 3px 8px rgba(15, 76, 92, 0.18);
+    transform: translateY(-1px);
+}
+
+#btnOpenCreateEvent i {
+    font-size: 18px;
+}
