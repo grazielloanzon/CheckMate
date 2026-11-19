@@ -2460,3 +2460,61 @@ background-attachment: fixed;
     }
 
 }
+
+
+/* =========================================
+   ADMIN EVENT STATUS TABS
+   Matches the Citizen Event Navigation
+========================================= */
+
+#adminStatusTabs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+
+    width: fit-content;
+    max-width: 100%;
+    padding: 5px;
+
+    background: #e7f1f3;
+    border: 1px solid #dce9eb;
+    border-radius: 10px;
+}
+
+#adminStatusTabs .nav-link {
+    padding: 9px 12px !important;
+    border: none;
+    border-radius: 7px;
+
+    background: transparent;
+    color: #3f5f66 !important;
+
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    transition: all 0.25s ease;
+}
+
+#adminStatusTabs .nav-link:hover,
+#adminStatusTabs .nav-link.active {
+    background: #ffffff;
+    color: #147d92 !important;
+    box-shadow: 0 1px 4px rgba(15, 76, 92, .08);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 576px) {
+    #adminStatusTabs {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    #adminStatusTabs .nav-link {
+        flex-shrink: 0;
+        font-size: 12px;
+        padding: 8px 10px !important;
+    }
+}
