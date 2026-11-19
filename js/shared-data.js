@@ -452,19 +452,25 @@ Parental consent for minors.`
         });
 
         communityEvents.forEach(event => {
-            const alreadyExists = storedEvents.some(existing =>
-                existing.id === event.id ||
-                existing.sourceId === `community-${event.id}`
-            );
+    const existingIndex = storedEvents.findIndex(existing =>
+        Number(existing.id) === Number(event.id) ||
+        existing.sourceId === `community-${event.id}`
+    );
 
-            if (!alreadyExists) {
-                storedEvents.push({
-                    ...event,
-                    source: 'preloaded',
-                    sourceId: `community-${event.id}`
-                });
-            }
+    if (existingIndex !== -1) {
+        // Update the categories of the two existing premade events.
+        if ([1005, 1010].includes(Number(event.id))) {
+            storedEvents[existingIndex].category = 'Health';
+        }
+    } else {
+        // Add new premade events without replacing existing records.
+        storedEvents.push({
+            ...event,
+            source: 'preloaded',
+            sourceId: `community-${event.id}`
         });
+    }
+});
 
         localStorage.setItem(
             'checkmate_events',
