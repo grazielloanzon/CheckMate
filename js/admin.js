@@ -9,6 +9,21 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Check whether the logged-in user is an Admin.
+    let currentUser = null;
+
+    try {
+        currentUser = JSON.parse(sessionStorage.getItem('checkmate_user'));
+    } catch (error) {
+        currentUser = null;
+    }
+
+    if (!currentUser || currentUser.role !== 'Admin') {
+        window.location.replace('index.html');
+        return;
+    }
+
     initializeSharedEvents();
     initializeDefaultAccounts();
 
