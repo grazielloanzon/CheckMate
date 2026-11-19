@@ -3,7 +3,7 @@
    ========================================================================== */
 
 function initializeSharedEvents() {
-    const SEED_VERSION = '2';
+    const SEED_VERSION = '3';
 
     const communityEvents = [
         {
