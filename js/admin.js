@@ -1351,6 +1351,7 @@ window.markAsCompleted = async function (id) {
    USERS
    ========================================================================== */
 
+
 let adminUserSort = 'recent';
 
 function renderAdminUsers() {
@@ -1369,33 +1370,54 @@ function renderAdminUsers() {
         users = [];
     }
 
-    // Sort accounts without changing the saved localStorage data.
+    // Sort accounts without changing saved localStorage data.
     const sortedUsers = [...users];
 
+    const getFirstName = user => {
+        const [firstName] = (user.name || '').trim().split(/\s+/);
+
+        return (user.firstName || firstName || '').trim();
+    };
+
+    const getSurname = user => {
+        const [, ...surnameParts] = (user.name || '').trim().split(/\s+/);
+
+        return (user.surname || surnameParts.join(' ') || '').trim();
+    };
+
+    // Recently Added: Newest registered users first.
     if (adminUserSort === 'recent') {
         sortedUsers.sort((a, b) => {
             const dateA = new Date(a.joined || 0).getTime() || 0;
             const dateB = new Date(b.joined || 0).getTime() || 0;
 
-            return dateB - dateA || (Number(b.id) || 0) - (Number(a.id) || 0);
+            return dateB - dateA ||
+                (Number(b.id) || 0) - (Number(a.id) || 0);
         });
-    } else if (adminUserSort === 'az') {
-        sortedUsers.sort((a, b) => {
-            const nameA = `${a.firstName || a.name || ''} ${a.surname || ''}`.trim();
-            const nameB = `${b.firstName || b.name || ''} ${b.surname || ''}`.trim();
 
-            return nameA.localeCompare(nameB, undefined, {
-                sensitivity: 'base'
-            });
-        });
-    } else if (adminUserSort === 'za') {
+    // Alphabetical sorting based on surname.
+    } else if (adminUserSort === 'az' || adminUserSort === 'za') {
         sortedUsers.sort((a, b) => {
-            const nameA = `${a.firstName || a.name || ''} ${a.surname || ''}`.trim();
-            const nameB = `${b.firstName || b.name || ''} ${b.surname || ''}`.trim();
+            const surnameCompare = getSurname(a).localeCompare(
+                getSurname(b),
+                undefined,
+                { sensitivity: 'base' }
+            );
 
-            return nameB.localeCompare(nameA, undefined, {
-                sensitivity: 'base'
-            });
+            // Same surname: sort first names A-Z.
+            const firstNameCompare = getFirstName(a).localeCompare(
+                getFirstName(b),
+                undefined,
+                { sensitivity: 'base' }
+            );
+
+            if (surnameCompare !== 0) {
+                return adminUserSort === 'az'
+                    ? surnameCompare
+                    : -surnameCompare;
+            }
+
+            return firstNameCompare;
         });
     }
 
@@ -1433,8 +1455,8 @@ function renderAdminUsers() {
             <table class="table table-hover align-middle">
                 <thead class="table-light">
                     <tr>
+                        <th>Last Name</th>
                         <th>First Name</th>
-                        <th>Surname</th>
                         <th>Email</th>
                     </tr>
                 </thead>
@@ -1442,26 +1464,23 @@ function renderAdminUsers() {
                 <tbody>
                     ${sortedUsers.length === 0
             ? `
-                            <tr>
-                                <td colspan="3" class="text-center text-muted py-4">
-                                    No registered accounts found.
-                                </td>
-                            </tr>
-                        `
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-4">
+                                No registered accounts found.
+                            </td>
+                        </tr>
+                    `
             : sortedUsers.map(user => {
-                const [nameFirst, ...surnameParts] =
-                    (user.name || '').split(' ');
-
-                const firstName = user.firstName || nameFirst || '';
-                const surname = user.surname || surnameParts.join(' ');
+                const firstName = getFirstName(user);
+                const surname = getSurname(user);
 
                 return `
-                                <tr>
-                                    <td>${escapeHTML(firstName)}</td>
-                                    <td>${escapeHTML(surname)}</td>
-                                    <td>${escapeHTML(user.email || '')}</td>
-                                </tr>
-                            `;
+                    <tr>
+                        <td>${escapeHTML(surname)}</td>
+                        <td>${escapeHTML(firstName)}</td>
+                        <td>${escapeHTML(user.email || '')}</td>
+                    </tr>
+                `;
             }).join('')
         }
                 </tbody>
@@ -1469,7 +1488,7 @@ function renderAdminUsers() {
         </div>
     `;
 
-    // Update the displayed order when the selection changes.
+    // Update displayed order when sorting selection changes.
     const sortSelect = document.getElementById('adminUserSort');
 
     if (sortSelect) {
@@ -1479,6 +1498,7 @@ function renderAdminUsers() {
         });
     }
 }
+
 
 
 
