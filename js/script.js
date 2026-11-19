@@ -11,7 +11,9 @@ const CM_DEFAULT_ACCOUNTS = [
     { id: 1, name: 'Juan Dela Cruz', firstName: 'Juan', surname: 'Dela Cruz', email: 'citizen@example.com', password: 'citizen123', role: 'Citizen', joined: '2026-01-10' },
     { id: 2, name: 'Maria Santos', firstName: 'Maria', surname: 'Santos', email: 'maria@example.com', password: 'maria123', role: 'Citizen', joined: '2026-03-22' },
     { id: 3, name: 'System Administrator', firstName: 'System', surname: 'Administrator', email: 'admin@checkmate.com', password: 'admin123', role: 'Admin', joined: '2026-01-01' },
-    { id: 4, name: 'Thristan Cacao', firstName: 'Thristan', surname: 'Cacao', email: 'thristancacao@example.com', password: 'tj123', role: 'Admin', joined: '2026-01-02' }
+    { id: 4, name: 'Thristan Cacao', firstName: 'Thristan', surname: 'Cacao', email: 'thristancacao@example.com', password: 'tj123', role: 'Admin', joined: '2026-01-02' },
+    { id: 5, name: 'Graziel Illyza Loanzon', firstName: 'Graziel Illyza', surname: 'Loanzon', email: 'group2checkmate@gmail.com', password: 'group2checkmate123', role: 'Admin', joined: '2026-01-03' }
+
 ];
 
 function cmGetUsers() {
