@@ -3,7 +3,7 @@
    ========================================================================== */
 
 function initializeSharedEvents() {
-    const SEED_VERSION = '3';
+    const SEED_VERSION = '2';
 
     const communityEvents = [
         {
@@ -452,25 +452,25 @@ Parental consent for minors.`
         });
 
         communityEvents.forEach(event => {
-    const existingIndex = storedEvents.findIndex(existing =>
-        Number(existing.id) === Number(event.id) ||
-        existing.sourceId === `community-${event.id}`
-    );
+            const existingIndex = storedEvents.findIndex(existing =>
+                Number(existing.id) === Number(event.id) ||
+                existing.sourceId === `community-${event.id}`
+            );
 
-    if (existingIndex !== -1) {
-        // Update the categories of the two existing premade events.
-        if ([1005, 1010].includes(Number(event.id))) {
-            storedEvents[existingIndex].category = 'Health';
-        }
-    } else {
-        // Add new premade events without replacing existing records.
-        storedEvents.push({
-            ...event,
-            source: 'preloaded',
-            sourceId: `community-${event.id}`
+            if (existingIndex !== -1) {
+                // Update only the category of existing premade events.
+                if ([1005, 1010].includes(Number(event.id))) {
+                    storedEvents[existingIndex].category = event.category;
+                }
+            } else {
+                // Add new premade events without replacing existing records.
+                storedEvents.push({
+                    ...event,
+                    source: 'preloaded',
+                    sourceId: `community-${event.id}`
+                });
+            }
         });
-    }
-});
 
         localStorage.setItem(
             'checkmate_events',
@@ -684,6 +684,7 @@ const CM_ADMIN_DEFAULT_ACCOUNTS = [
     }
 ];
 
+
 function initializeDefaultAccounts() {
     const USERS_KEY = 'checkmate_users';
     const DEFAULT_PASSWORD = 'asdasd123';
@@ -705,7 +706,16 @@ function initializeDefaultAccounts() {
             (user.email || '').toLowerCase() === account.email.toLowerCase()
         );
 
-        if (!existingUser) {
+        if (existingUser) {
+            // Update the role only when one is explicitly assigned.
+            if (account.role) {
+                existingUser.role = account.role;
+            }
+
+            if (!existingUser.password) {
+                existingUser.password = DEFAULT_PASSWORD;
+            }
+        } else {
             users.push({
                 id: Math.max(0, ...users.map(user => Number(user.id) || 0)) + 1,
                 name: `${account.firstName} ${account.surname}`,
@@ -713,7 +723,7 @@ function initializeDefaultAccounts() {
                 surname: account.surname,
                 email: account.email,
                 password: DEFAULT_PASSWORD,
-                role: 'Citizen',
+                role: account.role || 'Citizen',
                 joined: new Date().toISOString().split('T')[0]
             });
         }
